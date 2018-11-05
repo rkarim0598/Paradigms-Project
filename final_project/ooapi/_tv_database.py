@@ -14,6 +14,8 @@ import json
 class _tv_database:
 	def __init__(self):
 		self.tvshows = {}
+		self.users	 = {}
+		self.ratings = {}
 	
 	def load_tvshows(self, tvshows_file):
 		f = open(tvshows_file)
@@ -31,7 +33,7 @@ class _tv_database:
 			self.tvshows[components[0]]['summary'] = components[6]
 		
 		return self.tvshows
-		
+
 	def get_show(self, sid):
 		sid = str(sid)
 		
@@ -59,3 +61,72 @@ class _tv_database:
 	def delete_show(self, sid):
 		if sid in self.tvshows:
 			self.tvshows.pop(sid)
+
+	def load_users(self, user_file):
+		f = open(user_file)
+		self.users = {}
+		for line in f:
+			line = line.rstrip()
+			components = line.split(",")
+			pname = components[0]
+			uname = components[1]
+			self.users[uname] = pname
+
+		return self.users
+
+	def get_users(self):
+		return [i for i in self.users.keys()]
+
+	def get_user(self, uid):
+		if uid in self.users:
+			return self.users[uid]
+		else:
+			return None
+
+	def set_user(self, uid, pname, password, user_file):
+		self.users[uid] = pname
+		f = open(user_file, 'a')
+		f.write(pname + ',' + uid + ',' + password + '\n')
+		f.close()
+
+	def set_user_rating(self, uid, sid, rating):
+		if sid in self.ratings:
+			self.ratings[sid][uid] = rating
+		else:
+			self.ratings[sid] = {uid:rating}
+
+	def get_user_rating(self, uid, sid, rating):
+		if sid in self.ratings and uid in self.ratings[sid]:
+			return self.ratings[sid][uid]
+		else:
+			return None
+
+	def get_rating(self, sid):
+		sum = 0
+		if sid not in self.ratings:
+			return 0
+		for rating in self.ratings[sid].values():
+			sum += rating
+		sum /= len(self.ratings[sid])
+		return sum
+
+	def delete_ratings(self):
+		for sid in self.ratings:
+			self.ratings[sid] = {}
+
+	def reset_show(self, sid, tvshows_file):
+		f = open(tvshows_file, "r")
+		for line in f:
+			line = line.rstrip()
+			if sid == int(line.split("::")[0]):
+				components = line.split("::")
+
+				self.tvshows[sid] = {}
+				self.tvshows[sid]['name'] = components[1]
+				self.tvshows[sid]['genres'] = components[2]
+				self.tvshows[sid]['site'] = components[3]
+				self.tvshows[sid]['rating'] = components[4]
+				self.tvshows[sid]['image'] = components[5]
+				self.tvshows[sid]['summary'] = components[6]
+
+		f.close()
