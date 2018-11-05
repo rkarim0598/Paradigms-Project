@@ -130,3 +130,14 @@ class _tv_database:
 				self.tvshows[sid]['summary'] = components[6]
 
 		f.close()
+
+	def get_episodes(self, sid):
+		r = requests.get('api.tvmaze.com/shows/' + str(sid) + '?embed=episodes').content.decode()
+		d = json.loads(r)
+		season = d['_embedded']['episodes']['season']
+		name = d['_embedded']['episodes']['name']
+		number = d['_embedded']['episodes']['number']
+		image = d['_embedded']['episodes']['image']['medium']
+		summary = d['_embedded']['episodes']['summary']
+		return {'season':season,'name':name,'number':number,'image':image,'summary':summary}
+
