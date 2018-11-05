@@ -1,6 +1,0 @@
-import requests
-import json
-
-r = requests.get('https://api.tvmaze.com/shows')
-
-print(r.text)
