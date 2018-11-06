@@ -1,6 +1,33 @@
-How is the API used?
+# How is the API used?
+First, a user would instantiate a database using _tv_database() constructor.  Then, the user can load tv shows and users by using their corresponding load functions: dict(show_id: information) load_tvshows(tvshows_file) and dict(username: name) load_users(user_file).
 
+## Definitions:
+information is 'name', 'genres', 'site', 'rating', 'image', 'summary'.
+episode_dict is {'season', 'name', 'number', 'image', 'summary'}
+rating is the average rating for a given show
+user_rating is the rating given by a particular user
+all other variables should be self explanatory by their names (contact the creators if there are further questions)
 
-What is the feature from the API?
+## The usable functions are (format is return_value function(args)):
+dict(information + 'result') get_show(show_id)
+set_show(show_id, dict(information))
+list(show_ids) get_shows()
+dict(show_id: information) reset_shows(tvshows_file)
+delete_shows()
+delete_show(show_id)
+dict(username: name) load_users(user_file)
+list(usernames) get_users()
+name get_user(username)
+set_user(username, name, password, user_file)
+set_user_rating(username, show_id, user_rating)
+user_rating get_user_rating(username, show_id)
+rating get_rating(show_id)
+delete_ratings()
+reset_show(show_id, tvshows_file)
+list(episode_dicts) get_episodes(show_id)
 
+# What is the feature from the API?
+The API allows the user to interact with 240 TV shows, and all their episodes!  Users can get and set ratings for themselves, and see average ratings for shows, too.  In addition, much more data about each movie can be gathered by running the get-style functions.
 
+# To run the tests, simply run the following (with python 3):
+$ python test_api.py
