@@ -106,30 +106,40 @@ class _tv_database:
 		else:
 			return None
 
+	# get average rating for given show w/ sid
 	def get_rating(self, sid):
 		sid = str(sid)
 		sum = 0
+		
+		# if movie not in ratings, no ratings so return 0
 		if sid not in self.ratings:
 			return 0
-		for rating in self.ratings[sid].values():
+		for rating in self.ratings[sid].values(): # sum all ratings
 			sum += rating
-		if len(self.ratings[sid]) == 0:
+		if len(self.ratings[sid]) == 0: # if empty dictionary, return 0
 			return 0
 		sum /= len(self.ratings[sid])
 		return sum
 
+	# delete all ratings for every show
 	def delete_ratings(self):
 		for sid in self.ratings:
 			self.ratings[sid] = {}
 
+	# reset show to original content
 	def reset_show(self, sid, tvshows_file):
 		sid = str(sid)
+
+		# open tvshows_file and get data from there
 		f = open(tvshows_file, "r")
+
+		# parse
 		for line in f:
 			line = line.rstrip()
 			if sid == line.split("::")[0]:
 				components = line.split("::")
 
+				# assign original content
 				self.tvshows[sid] = {}
 				self.tvshows[sid]['name'] = components[1]
 				self.tvshows[sid]['genres'] = components[2]
@@ -138,12 +148,17 @@ class _tv_database:
 				self.tvshows[sid]['image'] = components[5]
 				self.tvshows[sid]['summary'] = components[6]
 
+		# close stream
 		f.close()
 
+	# get list of all episodes from every season for given show w/ sid
 	def get_episodes(self, sid):
+		# get data from api and decode
 		r = requests.get('http://api.tvmaze.com/shows/' + str(sid) + '?embed=episodes').content.decode()
 		d = json.loads(r)
 		episodes = []
+
+		# parse each entry
 		for episode in d['_embedded']['episodes']:
 			season = episode['season']
 			name = episode['name']
