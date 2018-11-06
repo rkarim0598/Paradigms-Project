@@ -1,4 +1,6 @@
-f = open('_tv_database.py')
+import sys
+
+f = open(sys.argv[1])
 
 i = 0
 for line in f:
