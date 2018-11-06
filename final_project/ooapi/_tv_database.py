@@ -31,6 +31,7 @@ class _tv_database:
 			self.tvshows[components[0]]['rating'] = components[4]
 			self.tvshows[components[0]]['image'] = components[5]
 			self.tvshows[components[0]]['summary'] = components[6]
+		f.close()
 		
 		return self.tvshows
 
@@ -95,7 +96,7 @@ class _tv_database:
 		else:
 			self.ratings[sid] = {uid:rating}
 
-	def get_user_rating(self, uid, sid, rating):
+	def get_user_rating(self, uid, sid):
 		if sid in self.ratings and uid in self.ratings[sid]:
 			return self.ratings[sid][uid]
 		else:
