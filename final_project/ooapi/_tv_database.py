@@ -47,13 +47,13 @@ class _tv_database:
 	
 	def set_show(self, sid, d = {}):
 		if len(d) == 6:
-	    	self.tvshows[sid] = d
+	    	        self.tvshows[sid] = d
 	
 	def get_shows(self):
 		return [i for i in self.tvshows.keys()]
 	
-	def reset_shows(self):
-		self.tvshows = load_tvshows('shows.txt')
+	def reset_shows(self, fname):
+		self.tvshows = self.load_tvshows(fname)
 	
 	def delete_shows(self):
 		self.tvshows = {}
