@@ -13,7 +13,7 @@ class TestTVDatabase(unittest.TestCase):
 	users = d.load_users(usersFile)
 	
 	def reset_data(self):
-		self.d.reset_shows(self.showsFile)
+		self.shows = self.d.reset_shows(self.showsFile)
 	
 	def test_get_show(self):
 		self.reset_data()
@@ -87,6 +87,39 @@ class TestTVDatabase(unittest.TestCase):
 		self.assertEqual(x, 1)
 		x = self.d.get_rating(self.SID)
 		self.assertEqual(x, 3)
+	
+	def test_delete_ratings(self):
+		self.reset_data()
+		self.d.set_user_rating("rkarim", self.SID, 5)
+		self.d.set_user_rating("rmcinty3", self.SID, 3)
+		self.d.set_user_rating("pbouchon", self.SID, 1)
+		x = self.d.get_user_rating("pbouchon", self.SID)
+		self.assertEqual(x, 1)
+		self.d.delete_ratings()
+		x = self.d.get_user_rating("pbouchon", self.SID)
+		self.assertEqual(x, None)
+		x = self.d.get_rating(self.SID)
+		self.assertEqual(x, 0)
+	
+	def test_reset_show(self):
+		self.reset_data()
+		self.shows[self.SID]['name'] = 'Avatar: The Last Airbender'
+		
+		self.d.set_show(self.SID, self.shows[self.SID])
+		output = self.d.get_show(self.SID)
+		self.assertEqual(output['name'], 'Avatar: The Last Airbender')
+		
+		self.d.reset_show(self.SID, self.showsFile)
+		output = self.d.get_show(self.SID)
+		self.assertEqual(output['name'], self.SNAME)
+		
+	def test_get_episodes(self):
+		self.reset_data()
+		episodes = self.d.get_episodes(self.SID)
+		self.assertEqual(len(episodes), 44)
+		self.assertEqual(episodes[0]['name'], 'Pilot')
+		self.assertEqual(episodes[1]['name'], 'The Cage')
+		
 		
 
 if __name__ == "__main__":

@@ -56,6 +56,7 @@ class _tv_database:
 	
 	def reset_shows(self, fname):
 		self.tvshows = self.load_tvshows(fname)
+		return self.tvshows
 	
 	def delete_shows(self):
 		self.tvshows = {}
@@ -126,7 +127,7 @@ class _tv_database:
 		f = open(tvshows_file, "r")
 		for line in f:
 			line = line.rstrip()
-			if sid == int(line.split("::")[0]):
+			if sid == line.split("::")[0]:
 				components = line.split("::")
 
 				self.tvshows[sid] = {}
@@ -140,12 +141,16 @@ class _tv_database:
 		f.close()
 
 	def get_episodes(self, sid):
-		r = requests.get('api.tvmaze.com/shows/' + str(sid) + '?embed=episodes').content.decode()
+		r = requests.get('http://api.tvmaze.com/shows/' + str(sid) + '?embed=episodes').content.decode()
 		d = json.loads(r)
-		season = d['_embedded']['episodes']['season']
-		name = d['_embedded']['episodes']['name']
-		number = d['_embedded']['episodes']['number']
-		image = d['_embedded']['episodes']['image']['medium']
-		summary = d['_embedded']['episodes']['summary']
-		return {'season':season,'name':name,'number':number,'image':image,'summary':summary}
+		episodes = []
+		for episode in d['_embedded']['episodes']:
+			season = episode['season']
+			name = episode['name']
+			number = episode['number']
+			image = episode['image']['medium']
+			summary = episode['summary']
+			episodes.append({'season':season,'name':name,'number':number,'image':image,'summary':summary})
+		
+		return episodes
 
