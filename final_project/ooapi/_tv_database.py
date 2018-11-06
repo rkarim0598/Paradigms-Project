@@ -47,9 +47,9 @@ class _tv_database:
 		return output
 	
 	def set_show(self, sid, d = {}):
-                sid = str(sid)
+		sid = str(sid)
 		if len(d) == 6:
-	    	        self.tvshows[sid] = d
+			self.tvshows[sid] = d
 	
 	def get_shows(self):
 		return [i for i in self.tvshows.keys()]
@@ -61,7 +61,7 @@ class _tv_database:
 		self.tvshows = {}
 	
 	def delete_show(self, sid):
-                sid = str(sid)
+		sid = str(sid)
 		if sid in self.tvshows:
 			self.tvshows.pop(sid)
 
@@ -93,8 +93,8 @@ class _tv_database:
 		f.close()
 
 	def set_user_rating(self, uid, sid, rating):
-                sid = str(sid)
-                if sid in self.ratings:
+		sid = str(sid)
+		if sid in self.ratings:
 			self.ratings[sid][uid] = rating
 		else:
 			self.ratings[sid] = {uid:rating}
@@ -106,15 +106,15 @@ class _tv_database:
 			return None
 
 	def get_rating(self, sid):
-                sid = str(sid)
+		sid = str(sid)
 		sum = 0
 		if sid not in self.ratings:
 			return 0
 		for rating in self.ratings[sid].values():
 			sum += rating
-                if len(self.ratings[sid]) == 0:
-                        return 0
-                sum /= len(self.ratings[sid])
+		if len(self.ratings[sid]) == 0:
+			return 0
+		sum /= len(self.ratings[sid])
 		return sum
 
 	def delete_ratings(self):
@@ -122,7 +122,7 @@ class _tv_database:
 			self.ratings[sid] = {}
 
 	def reset_show(self, sid, tvshows_file):
-                sid = str(sid)
+		sid = str(sid)
 		f = open(tvshows_file, "r")
 		for line in f:
 			line = line.rstrip()
