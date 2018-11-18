@@ -93,8 +93,13 @@ class TestTVDatabase(unittest.TestCase):
 		self.d.set_user_rating("pbouchon", self.SID, 1)
 		x = self.d.get_user_rating("pbouchon", self.SID)
 		self.assertEqual(x, 1)
+		# x = self.d.get_rating(self.SID)
+		# self.assertEqual(x, 3)
+
+	def test_get_rating(self):
+		self.reset_data()
 		x = self.d.get_rating(self.SID)
-		self.assertEqual(x, 3)
+		self.assertEqual(x, '8.3')
 
 	#test delete_ratings removes ratings for a show
 	def test_delete_ratings(self):
@@ -107,8 +112,8 @@ class TestTVDatabase(unittest.TestCase):
 		self.d.delete_ratings()
 		x = self.d.get_user_rating("pbouchon", self.SID)
 		self.assertEqual(x, None)
-		x = self.d.get_rating(self.SID)
-		self.assertEqual(x, 0)
+		# x = self.d.get_rating(self.SID)
+		# self.assertEqual(x, 0)
 
 	#test reset_show resets a show to original in showsFile
 	def test_reset_show(self):
