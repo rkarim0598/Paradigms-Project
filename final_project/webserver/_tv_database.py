@@ -30,7 +30,7 @@ class _tv_database:
 			self.tvshows[components[0]]['name'] = components[1]
 			self.tvshows[components[0]]['genres'] = components[2]
 			self.tvshows[components[0]]['site'] = components[3]
-			self.tvshows[components[0]]['rating'] = float(components[4])
+			self.tvshows[components[0]]['rating'] = components[4]
 			self.tvshows[components[0]]['image'] = components[5]
 			self.tvshows[components[0]]['summary'] = components[6]
 		f.close()
@@ -54,7 +54,7 @@ class _tv_database:
 		sid = str(sid)
 		if len(d) == 6:
 			self.tvshows[sid] = d
-			self.tvshows[sid]['rating'] = float(self.tvshows[sid]['rating'])
+			self.tvshows[sid]['rating'] = self.tvshows[sid]['rating']
 	
 	# Get all show ids
 	def get_shows(self):

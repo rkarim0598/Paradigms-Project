@@ -1,7 +1,7 @@
 import cherrypy
 
 # create all these
-#from shows import ShowController
+from shows import ShowController
 #from users import UserController
 #from votes import VoteController
 #from ratings import RatingController
@@ -14,7 +14,7 @@ def start_service():
 	
 	tdb = _tv_database()
 	
-	#showController = ShowController(tdb)
+	showController = ShowController(tdb)
 	#userController = UserController(tdb)
 	#voteController = VoteController(tdb)
 	#ratingController = RatingController(tdb)
@@ -22,20 +22,19 @@ def start_service():
 	
 	''' dispatcher connects '''
 	# Shows
-#	dispatcher.connect('show_get', '/shows/', controller=showController, action='GET', conditions=dict(method=['GET']))
-#    dispatcher.connect('show_delete', '/shows/', controller=showController,            action='DELETE', conditions=dict(method=['DELETE']))
+	dispatcher.connect('show_get', '/shows/', controller=showController, action='GET', conditions=dict(method=['GET']))
+	dispatcher.connect('show_delete', '/shows/', controller=showController,            action='DELETE', conditions=dict(method=['DELETE']))
 	
 	# Shows w/ sid
-#	dispatcher.connect('show_get_sid', '/shows/:sid', controller=showController,       action='GET_SID', conditions=dict(method=['GET']))
-#    dispatcher.connect('show_put_sid', '/shows/:sid', controller=showController,       action='PUT_SID', conditions=dict(method=['PUT']))
-#    dispatcher.connect('show_delete_sid', '/shows/:sid', controller=showController,    action='DELETE_SID', conditions=dict(method=['DELETE']))
+	dispatcher.connect('show_get_sid', '/shows/:sid', controller=showController,       action='GET_SID', conditions=dict(method=['GET']))
+	dispatcher.connect('show_put_sid', '/shows/:sid', controller=showController,       action='PUT_SID', conditions=dict(method=['PUT']))
+	dispatcher.connect('show_delete_sid', '/shows/:sid', controller=showController,    action='DELETE_SID', conditions=dict(method=['DELETE']))
 	
 	# Ratings
 #	dispatcher.connect('rating_get', '/ratings/:sid', controller=ratingController,        action='GET', conditions=dict(method=['GET']))
 	
 	# Users w/ uid
 #	dispatcher.connect('user_get_uid', '/users/:uid', controller=userController,          action='GET_UID', conditions=dict(method=['GET']))
-#    dispatcher.connect('user_post_uid', '/users/:uid', controller=userController,         action='PUT_UID', conditions=dict(method=['PUT']))
 #    dispatcher.connect('user_delete_uid', '/users/:uid', controller=userController,       action='DELETE_UID', conditions=dict(method=['DELETE']))
 	
 	# Users
