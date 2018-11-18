@@ -12,13 +12,13 @@ from _tv_database import _tv_database
 def start_service():
 	dispatcher = cherrypy.dispatch.RoutesDispatcher()
 	
-	mdb = _tv_database()
+	tdb = _tv_database()
 	
-	#showController = ShowController(mdb)
-	#userController = UserController(mdb)
-	#voteController = VoteController(mdb)
-	#ratingController = RatingController(mdb)
-	#resetController = ResetController(mdb)
+	#showController = ShowController(tdb)
+	#userController = UserController(tdb)
+	#voteController = VoteController(tdb)
+	#ratingController = RatingController(tdb)
+	#resetController = ResetController(tdb)
 	
 	''' dispatcher connects '''
 	# Shows
