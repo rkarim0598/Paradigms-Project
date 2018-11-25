@@ -121,6 +121,12 @@ class _tv_database:
 		else:
 			return None
 
+	# Delete a user from the database by uid
+	def delete_user(self, uid):
+		sid = str(uid)
+		if uid in self.users:
+			self.users.pop(uid)
+
 	# get average rating for given show w/ sid
 	def get_rating(self, sid):
 		sid = str(sid)
