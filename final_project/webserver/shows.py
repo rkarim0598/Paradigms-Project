@@ -26,13 +26,16 @@ class ShowController(object):
 	
 		try:
 			show = self.tdb.get_show(sid)
+			sdict = {}
 			if show['result'] is not 'failure':
-				output['name'] = show['name']
-				output['genres'] = show['genres']
-				output['site'] = show['site']
-				output['rating'] = show['rating']
-				output['image'] = show['image']
-				output['summary'] = show['summary']
+				sdict['name'] = show['name']
+				sdict['genres'] = show['genres']
+				sdict['site'] = show['site']
+				sdict['rating'] = show['rating']
+				sdict['image'] = show['image']
+				sdict['summary'] = show['summary']
+				output['output'] = sdict
+				output['episodes'] = self.tdb.get_episodes(sid)
 			else:
 				output['result'] = 'error'
 				output['message'] = 'movie not found'
