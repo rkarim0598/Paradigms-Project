@@ -17,7 +17,8 @@ class _tv_database:
 		self.tvshows = {}
 		self.users	 = {}
 		self.ratings = {}
-	
+		self.userRatings = {}
+
 	# Loads all the tv shows from file, returns dict of tv shows
 	def load_tvshows(self, tvshows_file):
 		f = open(tvshows_file)
@@ -107,16 +108,29 @@ class _tv_database:
 	
 	# Submit a new rating for a user
 	def set_user_rating(self, uid, sid, rating):
+		#sid = str(sid)
+		#if sid in self.ratings:
+		#	self.ratings[sid][uid] = rating
+		#else:
+		#	self.ratings[sid] = {uid:rating}
+		uid = str(uid)
 		sid = str(sid)
-		if sid in self.ratings:
-			self.ratings[sid][uid] = rating
+		rating = int(rating)
+
+		if uid in self.userRatings:
+			self.userRatings[uid][sid] = rating
 		else:
-			self.ratings[sid] = {uid:rating}
-	
+			self.userRatings[uid] = dict()
+			self.userRatings[uid][sid] = rating
+
 	# Get what the user rated a specific show
 	def get_user_rating(self, uid, sid):
-		if str(sid) in self.ratings and uid in self.ratings[str(sid)]:
-			return self.ratings[str(sid)][uid]
+		#if str(sid) in self.ratings and uid in self.ratings[str(sid)]:
+		#	return self.ratings[str(sid)][uid]
+		#else:
+		#	return None
+		if str(sid) in self.tvshows and self.userRatings[str(uid)] != {} and str(uid) in self.userRatings:
+			return self.userRatings[uid][sid]
 		else:
 			return None
 
@@ -138,15 +152,49 @@ class _tv_database:
 		sid = str(sid)
 		info = self.get_show(sid)
 		if info['result'] == 'success':
+			if info['rating'] == 'None':
+				return 0
 			return info['rating']
 		else:
 			return 0
 
 	# delete all ratings for every show
 	def delete_ratings(self):
-		for sid in self.ratings:
-			self.ratings[sid] = {}
+		for uid in self.userRatings:
+			self.userRatings[uid] = {}
 
+	def get_recommendation(self, uid):
+		ratmax = 0
+		maxid = -1
+		uid = str(uid)
+		showList = self.get_shows()
+		userList = []
+
+		if self.userRatings[uid]:
+			for show in self.userRatings[uid]:
+				userList.append(show)
+	
+		if len(userList) > 0:
+			for sid in showList:
+				sid = str(sid)
+				if sid not in userList:
+					rating = float(self.get_rating(sid))
+					if rating > ratmax:
+						ratmax = rating
+						maxid = int(sid)
+					elif rating == ratmax and int(sid) < maxid:
+						maxid = int(sid)
+		else:
+			for sid in showList:
+				sid = str(sid)
+				rating = float(self.get_rating(sid))
+				if rating > ratmax:
+					ratmax = rating
+					maxid = int(sid)
+				elif rating == ratmax and int(sid) < maxid:
+					maxid = int(sid)
+		return str(maxid)
+ 
 	# reset show to original content
 	def reset_show(self, sid, tvshows_file):
 		sid = str(sid)

@@ -88,8 +88,8 @@ class TestTVDatabase(unittest.TestCase):
 		self.reset_data()
 		x = self.d.get_user_rating("pbouchon", self.SID)
 		self.assertEqual(x, None)
-		self.d.set_user_rating("rkarim", self.SID, 5)
-		self.d.set_user_rating("rmcinty3", self.SID, 3)
+		#self.d.set_user_rating("rkarim", self.SID, 5)
+		#self.d.set_user_rating("rmcinty3", self.SID, 3)
 		self.d.set_user_rating("pbouchon", self.SID, 1)
 		x = self.d.get_user_rating("pbouchon", self.SID)
 		self.assertEqual(x, 1)
@@ -106,14 +106,22 @@ class TestTVDatabase(unittest.TestCase):
 		self.reset_data()
 		self.d.set_user_rating("rkarim", self.SID, 5)
 		self.d.set_user_rating("rmcinty3", self.SID, 3)
-		self.d.set_user_rating("pbouchon", self.SID, 1)
+		self.d.set_user_rating("pbouchon", self.SID, 4)
 		x = self.d.get_user_rating("pbouchon", self.SID)
-		self.assertEqual(x, 1)
+		self.assertEqual(x, 4)
 		self.d.delete_ratings()
 		x = self.d.get_user_rating("pbouchon", self.SID)
 		self.assertEqual(x, None)
 		# x = self.d.get_rating(self.SID)
 		# self.assertEqual(x, 0)
+
+	def test_get_recommendation(self):
+		self.reset_data()
+		
+		rec = self.d.get_recommendation("pbouchon")
+		print(rec)
+		vote = self.d.get_rating(str(rec))
+		self.assertEqual(vote, '9.4')
 
 	#test reset_show resets a show to original in showsFile
 	def test_reset_show(self):
