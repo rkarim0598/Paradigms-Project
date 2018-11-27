@@ -18,7 +18,7 @@ class _tv_database:
 		self.users	 = {}
 		self.ratings = {}
 		self.userRatings = {}
-
+	
 	# Loads all the tv shows from file, returns dict of tv shows
 	def load_tvshows(self, tvshows_file):
 		f = open(tvshows_file)
@@ -55,6 +55,7 @@ class _tv_database:
 		sid = str(sid)
 		if len(d) == 6:
 			self.tvshows[sid] = d
+			self.tvshows[sid]['rating'] = self.tvshows[sid]['rating']
 	
 	# Get all show ids
 	def get_shows(self):
@@ -108,11 +109,6 @@ class _tv_database:
 	
 	# Submit a new rating for a user
 	def set_user_rating(self, uid, sid, rating):
-		#sid = str(sid)
-		#if sid in self.ratings:
-		#	self.ratings[sid][uid] = rating
-		#else:
-		#	self.ratings[sid] = {uid:rating}
 		uid = str(uid)
 		sid = str(sid)
 		rating = int(rating)
@@ -125,29 +121,27 @@ class _tv_database:
 
 	# Get what the user rated a specific show
 	def get_user_rating(self, uid, sid):
-		#if str(sid) in self.ratings and uid in self.ratings[str(sid)]:
-		#	return self.ratings[str(sid)][uid]
-		#else:
-		#	return None
 		if str(sid) in self.tvshows and self.userRatings[str(uid)] != {} and str(uid) in self.userRatings:
 			return self.userRatings[uid][sid]
 		else:
 			return None
 
-	# get average rating for given show w/ sid
-	# def get_rating(self, sid):
-	# 	sid = str(sid)
-	# 	sum = 0
-		
-	# 	# if movie not in ratings, no ratings so return 0
-	# 	if sid not in self.ratings:
-	# 		return 0
-	# 	for rating in self.ratings[sid].values(): # sum all ratings
-	# 		sum += rating
-	# 	if len(self.ratings[sid]) == 0: # if empty dictionary, return 0
-	# 		return 0
-	# 	sum /= len(self.ratings[sid])
-	# 	return sum
+	# Submit a new rating for a user
+	#def set_user_rating(self, uid, sid, rating):
+	#	sid = str(sid)
+	#	if sid in self.ratings:
+	#		self.ratings[sid][uid] = rating
+	#	else:
+	#		self.ratings[sid] = {uid:rating}
+	
+	# Get what the user rated a specific show
+	#def get_user_rating(self, uid, sid):
+	#	if str(sid) in self.ratings and uid in self.ratings[str(sid)]:
+	#		return self.ratings[str(sid)][uid]
+	#	else:
+	#		return None
+
+	# Delete a user from the database by uid
 	def get_rating(self, sid):
 		sid = str(sid)
 		info = self.get_show(sid)
@@ -195,6 +189,11 @@ class _tv_database:
 					maxid = int(sid)
 		return str(maxid)
  
+	def delete_user(self, uid):
+		sid = str(uid)
+		if uid in self.users:
+			self.users.pop(uid)
+
 	# reset show to original content
 	def reset_show(self, sid, tvshows_file):
 		sid = str(sid)

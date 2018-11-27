@@ -3,9 +3,9 @@ import cherrypy
 # create all these
 from shows import ShowController
 #from users import UserController
-#from votes import VoteController
-#from ratings import RatingController
-#from reset import ResetController
+from votes import VoteController
+from ratings import RatingController
+from reset import ResetController
 
 from _tv_database import _tv_database
 
@@ -16,9 +16,9 @@ def start_service():
 	
 	showController = ShowController(tdb)
 	#userController = UserController(tdb)
-	#voteController = VoteController(tdb)
-	#ratingController = RatingController(tdb)
-	#resetController = ResetController(tdb)
+	voteController = VoteController(tdb)
+	ratingController = RatingController(tdb=tdb)
+	resetController = ResetController(tdb)
 	
 	''' dispatcher connects '''
 	# Shows
@@ -31,7 +31,7 @@ def start_service():
 	dispatcher.connect('show_delete_sid', '/shows/:sid', controller=showController,    action='DELETE_SID', conditions=dict(method=['DELETE']))
 	
 	# Ratings
-#	dispatcher.connect('rating_get', '/ratings/:sid', controller=ratingController,        action='GET', conditions=dict(method=['GET']))
+	dispatcher.connect('rating_get', '/ratings/:sid', controller=ratingController,        action='GET_RATING', conditions=dict(method=['GET']))
 	
 	# Users w/ uid
 #	dispatcher.connect('user_get_uid', '/users/:uid', controller=userController,          action='GET_UID', conditions=dict(method=['GET']))
@@ -43,12 +43,12 @@ def start_service():
 #    dispatcher.connect('user_delete', '/users/', controller=userController,               action='DELETE', conditions=dict(method=['DELETE']))
 	
 	# Votes w/ uid
-#    dispatcher.connect('vote_get_uid', '/recommendations/:uid',                           controller=voteController, action='GET_UID', conditions=dict(method=['GET']))
-#    dispatcher.connect('vote_put_uid', '/recommendations/:uid',                           controller=voteController, action='PUT_UID', conditions=dict(method=['PUT']))
+	dispatcher.connect('vote_get_uid', '/recommendations/:uid', controller=voteController, action='GET_REC', conditions=dict(method=['GET']))
+	dispatcher.connect('vote_put_uid', '/recommendations/:uid',                           controller=voteController, action='PUT_REC', conditions=dict(method=['PUT']))
 	
 	# Reset
-#	dispatcher.connect('reset_index', '/reset/', controller=resetController,              action='PUT_INDEX', conditions=dict(method=['PUT']))
-#    dispatcher.connect('reset_sid', '/reset/:sid', controller=resetController,            action='PUT_SID', conditions=dict(method=['PUT']))
+	dispatcher.connect('reset_index', '/reset/', controller=resetController,              action='PUT_INDEX', conditions=dict(method=['PUT']))
+	dispatcher.connect('reset_sid', '/reset/:sid', controller=resetController,            action='PUT_SID', conditions=dict(method=['PUT']))
 
 	conf = { 'global' : { 'server.socket_host' : 'student04.cse.nd.edu', 'server.socket_port' : 52094 }, '/' : { 'request.dispatch': dispatcher } }
 	

@@ -16,6 +16,7 @@ class ResetController(object):
 		try:
 			self.tdb.load_tvshows('../fetch_data/shows.txt')
 			self.tdb.load_users('../fetch_data/users.txt')
+			self.tdb.delete_ratings()
 		except Exception as e:
 			output['result'] = 'error'
 			output['message'] = str(e)

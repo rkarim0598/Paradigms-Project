@@ -119,9 +119,16 @@ class TestTVDatabase(unittest.TestCase):
 		self.reset_data()
 		
 		rec = self.d.get_recommendation("pbouchon")
-		print(rec)
+		self.assertEqual(rec, '216')
 		vote = self.d.get_rating(str(rec))
 		self.assertEqual(vote, '9.4')
+		self.d.delete_ratings()
+		self.d.set_user_rating("pbouchon", str(rec), 4)
+		rec = self.d.get_recommendation("pbouchon")
+		self.assertEqual(rec, '82')
+		vote = self.d.get_rating(str(rec))
+		self.assertEqual(vote, '9.3')
+		self.d.delete_ratings()
 
 	#test reset_show resets a show to original in showsFile
 	def test_reset_show(self):
