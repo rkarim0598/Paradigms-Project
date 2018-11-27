@@ -9,7 +9,7 @@ class TestRatings(unittest.TestCase):
 
 	def reset_data(self):
 		m = {}
-		r = requests.put(self.RESET_URL)
+		r = requests.put(self.RESET_URL, data = json.dumps(m))
 
 	def is_json(self, resp):
 		try:
@@ -19,7 +19,7 @@ class TestRatings(unittest.TestCase):
 			return False
 			
 	def test_ratings_get(self):
-		#self.reset_data() # this reset causing issues with server
+		self.reset_data() # this reset causing issues with server
 		sid = 216
 
 		r = requests.get(self.RATINGS_URL + str(sid))
