@@ -2,7 +2,7 @@ import cherrypy
 
 # create all these
 from shows import ShowController
-#from users import UserController
+from users import UserController
 from votes import VoteController
 from ratings import RatingController
 from reset import ResetController
@@ -15,7 +15,7 @@ def start_service():
 	tdb = _tv_database()
 	
 	showController = ShowController(tdb)
-	#userController = UserController(tdb)
+	userController = UserController(tdb)
 	voteController = VoteController(tdb)
 	ratingController = RatingController(tdb=tdb)
 	resetController = ResetController(tdb)
@@ -34,13 +34,13 @@ def start_service():
 	dispatcher.connect('rating_get', '/ratings/:sid', controller=ratingController,        action='GET_RATING', conditions=dict(method=['GET']))
 	
 	# Users w/ uid
-#	dispatcher.connect('user_get_uid', '/users/:uid', controller=userController,          action='GET_UID', conditions=dict(method=['GET']))
-#    dispatcher.connect('user_delete_uid', '/users/:uid', controller=userController,       action='DELETE_UID', conditions=dict(method=['DELETE']))
+	dispatcher.connect('user_get_uid', '/users/:uid', controller=userController,          action='GET_UID', conditions=dict(method=['GET']))
+	dispatcher.connect('user_delete_uid', '/users/:uid', controller=userController,       action='DELETE_UID', conditions=dict(method=['DELETE']))
 	
 	# Users
-#	dispatcher.connect('user_get', '/users/', controller=userController, action='GET',    conditions=dict(method=['GET']))
-#    dispatcher.connect('user_post', '/users/', controller=userController, action='POST',  conditions=dict(method=['POST']))
-#    dispatcher.connect('user_delete', '/users/', controller=userController,               action='DELETE', conditions=dict(method=['DELETE']))
+	dispatcher.connect('user_get', '/users/', controller=userController, action='GET',    conditions=dict(method=['GET']))
+	dispatcher.connect('user_post', '/users/', controller=userController, action='POST',  conditions=dict(method=['POST']))
+	dispatcher.connect('user_delete', '/users/', controller=userController,               action='DELETE', conditions=dict(method=['DELETE']))
 	
 	# Votes w/ uid
 	dispatcher.connect('vote_get_uid', '/recommendations/:uid', controller=voteController, action='GET_REC', conditions=dict(method=['GET']))

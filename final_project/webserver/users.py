@@ -8,24 +8,28 @@ class UserController(object):
 			self.td = _tv_database()
 		else:
 			self.td = database
-		self.td.load_tvshows('../fetch_data/shows.txt')
+		self.td.load_users('../fetch_data/users.txt')
 
 	def get_value(self, key):
-		return self.td.get_user(int(key))
+		return self.td.get_user(key)
 
 	#even handlers for resource requests
-	def GET_UID(self, key):
+	def GET_UID(self, uid):
 		#rule 1
 		output = {'result' : 'success'}
 
 		#rule 2 - check your data - key or payload
-		key = int(key)
+		key = str(uid)
 
 		#rule 3 - try - except
 		try:
 			value = self.get_value(key)
-			output['pname'] = value
-		else Exception as e:
+			if value is not None:
+				output['pname'] = value
+			else:
+				output['result'] = 'error'
+				output['message'] = 'not a valid uid'
+		except Exception as e:
 			output['result'] = 'error'
 			output['message'] = str(e)
 
@@ -36,7 +40,7 @@ class UserController(object):
 
 		try:
 			output['output'] = self.td.get_users()
-		else Exception as e:
+		except Exception as e:
 			output['result'] = 'error'
 			output['message'] = str(e)
 
@@ -69,10 +73,10 @@ class UserController(object):
 			output['message'] = str(ex)
 		return json.dumps(output)
 
-	def DELETE_UID(self, key):
+	def DELETE_UID(self, uid):
 		output = {'result': 'success'}
 
-		key = int(key)
+		key = str(uid)
 		try:
 			self.td.delete_user(key)
 		except Exception as ex:
