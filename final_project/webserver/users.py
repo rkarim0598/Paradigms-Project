@@ -3,6 +3,7 @@ import cherrypy
 from _tv_database import _tv_database
 
 class UserController(object):
+	# Constructor
 	def __init__(self, database=None):
 		if database is None:
 			self.td = _tv_database()
@@ -13,15 +14,11 @@ class UserController(object):
 	def get_value(self, key):
 		return self.td.get_user(key)
 
-	#even handlers for resource requests
+	# GET request with a uid key, returns json with pname listed
 	def GET_UID(self, uid):
-		#rule 1
 		output = {'result' : 'success'}
-
-		#rule 2 - check your data - key or payload
 		key = str(uid)
 
-		#rule 3 - try - except
 		try:
 			value = self.get_value(key)
 			if value is not None:
@@ -35,6 +32,7 @@ class UserController(object):
 
 		return json.dumps(output)
 
+	# GET request with no uid key, returns json with all uids
 	def GET(self):
 		output = {'result' : 'success'}
 
@@ -46,10 +44,9 @@ class UserController(object):
 
 		return json.dumps(output)
 
+	# POST request creates a new user, and updates users.txt
 	def POST(self):
 		output = {'result': 'success'}
-
-		#extract message from body
 		data = json.loads(cherrypy.request.body.read())
 		
 		try:
@@ -60,6 +57,7 @@ class UserController(object):
 
 		return json.dumps(output)
 
+	# DELETE request with no uid key deletes all current users
 	def DELETE(self):
 		output = {'result': 'success'}
 
@@ -70,6 +68,7 @@ class UserController(object):
 			output['message'] = str(ex)
 		return json.dumps(output)
 
+	# DELETE request with uid key deletes chosen user, and updates users.txt
 	def DELETE_UID(self, uid):
 		output = {'result': 'success'}
 
