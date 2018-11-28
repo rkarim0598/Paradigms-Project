@@ -4,7 +4,7 @@ import json
 
 class TestShows(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:52094'
+	SITE_URL = 'http://student04.cse.nd.edu:52048'
 	SHOWS_URL = SITE_URL + '/shows/'
 	RESET_URL = SITE_URL + '/reset/'
 

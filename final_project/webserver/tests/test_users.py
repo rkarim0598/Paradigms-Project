@@ -4,7 +4,7 @@ import json
 
 class TestUsers(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:52094' #replace with your port number
+	SITE_URL = 'http://student04.cse.nd.edu:52048'
 	USERS_URL = SITE_URL + '/users/'
 	RESET_URL = SITE_URL + '/reset/'
 

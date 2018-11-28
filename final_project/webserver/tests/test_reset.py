@@ -4,7 +4,7 @@ import json
 
 class TestReset(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:52094'
+	SITE_URL = 'http://student04.cse.nd.edu:52048'
 	RESET_URL = SITE_URL + '/reset/'
 	SHOWS_URL = SITE_URL + '/shows/'
 

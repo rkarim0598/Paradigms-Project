@@ -3,7 +3,7 @@ import requests
 import json
 
 class TestRecommendations(unittest.TestCase):
-	SITE_URL = 'http://student04.cse.nd.edu:52094'
+	SITE_URL = 'http://student04.cse.nd.edu:52048'
 	RECOMMENDATIONS_URL = SITE_URL + '/recommendations/'
 	RATINGS_URL = SITE_URL + '/ratings/'
 	RESET_URL = SITE_URL + '/reset/'

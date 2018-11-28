@@ -50,7 +50,7 @@ def start_service():
 	dispatcher.connect('reset_index', '/reset/', controller=resetController,              action='PUT_INDEX', conditions=dict(method=['PUT']))
 	dispatcher.connect('reset_sid', '/reset/:sid', controller=resetController,            action='PUT_SID', conditions=dict(method=['PUT']))
 
-	conf = { 'global' : { 'server.socket_host' : 'student04.cse.nd.edu', 'server.socket_port' : 52094 }, '/' : { 'request.dispatch': dispatcher } }
+	conf = { 'global' : { 'server.socket_host' : 'student04.cse.nd.edu', 'server.socket_port' : 52048 }, '/' : { 'request.dispatch': dispatcher } }
 	
 	cherrypy.config.update(conf)
 	app = cherrypy.tree.mount(None, config=conf)
