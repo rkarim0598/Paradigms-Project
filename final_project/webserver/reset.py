@@ -4,12 +4,14 @@ import json
 from _tv_database import _tv_database
 
 class ResetController(object):
+	# constructor
 	def __init__(self, tdb=None):
 		if tdb is None:
 			self.tdb = _tv_database()
 		else:
 			self.tdb = tdb
 	
+	# reset shows, users, and ratings
 	def PUT_INDEX(self):
 		output = {'result': 'success'}
 		data = json.loads(cherrypy.request.body.read().decode())
@@ -22,6 +24,7 @@ class ResetController(object):
 			output['message'] = str(e)
 		return json.dumps(output)
 	
+	# reset single show
 	def PUT_SID(self, sid):
 		output = {'result': 'success'}
 		sid = int(sid)

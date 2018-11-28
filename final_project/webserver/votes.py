@@ -2,12 +2,14 @@ import cherrypy
 import json
 
 class VoteController(object):
+	# constructor
 	def __init__(self, tdb=None):
 		if tdb is None:
 			self.tdb = dict()
 		else:
 			self.tdb = tdb
 
+	# get movie rec depending on given uid's previous ratings
 	def GET_REC(self, uid):
 		output = { 'result': 'success' }
 		uid = str(uid)
@@ -21,6 +23,7 @@ class VoteController(object):
 
 		return json.dumps(output)
 
+	# add user vote given json data
 	def PUT_REC(self, uid):
 		uid = str(uid)
 		output = { 'result' : 'success' }
