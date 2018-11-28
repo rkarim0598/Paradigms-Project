@@ -53,8 +53,7 @@ class UserController(object):
 		data = json.loads(cherrypy.request.body.read())
 		
 		try:
-			max = int(self.td.get_users()[-1]) + 1
-			self.td.set_user(max,data['uname'],data['pname'],data['password'],'../fetch_data/users.txt')
+			self.td.set_user(data['uname'],data['pname'],data['password'],'../fetch_data/users.txt')
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)
@@ -65,9 +64,7 @@ class UserController(object):
 		output = {'result': 'success'}
 
 		try:
-			uids = self.td.get_users()
-			for uid in uids:
-				self.td.delete_user(uid)
+			self.td.users = {}
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)
@@ -78,7 +75,7 @@ class UserController(object):
 
 		key = str(uid)
 		try:
-			self.td.delete_user(key)
+			self.td.delete_user(key,'../fetch_data/users.txt')
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)

@@ -188,10 +188,17 @@ class _tv_database:
 					maxid = int(sid)
 		return str(maxid)
  
-	def delete_user(self, uid):
-		sid = str(uid)
+	def delete_user(self, uid, user_file):
 		if uid in self.users:
 			self.users.pop(uid)
+		f = open(user_file, 'r')
+		lines = f.readlines()
+		f.close()
+		f = open(user_file, 'w')
+		for line in lines:
+			if line.split(",")[1] != uid:
+				f.write(line)
+		f.close()
 
 	# reset show to original content
 	def reset_show(self, sid, tvshows_file):
