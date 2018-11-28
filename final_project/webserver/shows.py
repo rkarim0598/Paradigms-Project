@@ -1,12 +1,3 @@
-	# Shows
-#	dispatcher.connect('show_get', '/shows/', controller=showController, action='GET', conditions=dict(method=['GET']))
-#    dispatcher.connect('show_delete', '/shows/', controller=showController,            action='DELETE', conditions=dict(method=['DELETE']))
-	
-	# Shows w/ sid
-#	dispatcher.connect('show_get_sid', '/shows/:sid', controller=showController,       action='GET_SID', conditions=dict(method=['GET']))
-#    dispatcher.connect('show_put_sid', '/shows/:sid', controller=showController,       action='PUT_SID', conditions=dict(method=['PUT']))
-#    dispatcher.connect('show_delete_sid', '/shows/:sid', controller=showController,    action='DELETE_SID', conditions=dict(method=['DELETE']))
-
 import cherrypy
 import json
 from _tv_database import _tv_database
@@ -20,6 +11,7 @@ class ShowController(object):
 		
 		self.tdb.load_tvshows('../fetch_data/shows.txt')
 	
+	# Get a show by specifying the show id
 	def GET_SID(self, sid):
 		output = {'result': 'success'}
 		sid = int(sid)
@@ -45,6 +37,7 @@ class ShowController(object):
 		
 		return json.dumps(output)
 	
+	# Change a show (put) by specifying a show id
 	def PUT_SID(self, sid):
 		output = {'result': 'success'}
 		sid = int(sid)
@@ -57,6 +50,7 @@ class ShowController(object):
 			output['message'] = str(e)
 		return json.dumps(output)
 	
+	# Delete a show by specifying show id
 	def DELETE_SID(self, sid):
 		output = {'result': 'success'}
 		sid = int(sid)
@@ -68,6 +62,7 @@ class ShowController(object):
 			output['message'] = str(e)
 		return json.dumps(output)
 	
+	# Get all shows
 	def GET(self):
 		output = {'result': 'success'}
 		try:
@@ -94,6 +89,7 @@ class ShowController(object):
 			output['message'] = str(e)
 		return json.dumps(output)
 	
+	# Delete all shows
 	def DELETE(self):
 		output = {'result': 'success'}
 		
