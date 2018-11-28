@@ -126,21 +126,6 @@ class _tv_database:
 		else:
 			return None
 
-	# Submit a new rating for a user
-	#def set_user_rating(self, uid, sid, rating):
-	#	sid = str(sid)
-	#	if sid in self.ratings:
-	#		self.ratings[sid][uid] = rating
-	#	else:
-	#		self.ratings[sid] = {uid:rating}
-	
-	# Get what the user rated a specific show
-	#def get_user_rating(self, uid, sid):
-	#	if str(sid) in self.ratings and uid in self.ratings[str(sid)]:
-	#		return self.ratings[str(sid)][uid]
-	#	else:
-	#		return None
-
 	# Delete a user from the database by uid
 	def get_rating(self, sid):
 		sid = str(sid)
@@ -156,17 +141,22 @@ class _tv_database:
 	def delete_ratings(self):
 		self.userRatings = {}
 
+	# get rec for uid
 	def get_recommendation(self, uid):
 		ratmax = 0
 		maxid = -1
 		uid = str(uid)
+		
+		# get list of shows (ids)
 		showList = self.get_shows()
 		userList = []
 
+		# get list of user rated shows (ids)
 		if self.userRatings and self.userRatings[uid]:
 			for show in self.userRatings[uid]:
 				userList.append(show)
 	
+		# if user has rated shows
 		if len(userList) > 0:
 			for sid in showList:
 				sid = str(sid)
@@ -188,6 +178,7 @@ class _tv_database:
 					maxid = int(sid)
 		return str(maxid)
  
+	# delete user from tdb and file
 	def delete_user(self, uid, user_file):
 		if uid in self.users:
 			self.users.pop(uid)
@@ -242,4 +233,3 @@ class _tv_database:
 			episodes.append({'season':season,'name':name,'number':number,'image':image,'summary':summary})
 		
 		return episodes
-

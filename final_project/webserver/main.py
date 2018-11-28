@@ -10,10 +10,13 @@ from reset import ResetController
 from _tv_database import _tv_database
 
 def start_service():
+	# create route dispatcher
 	dispatcher = cherrypy.dispatch.RoutesDispatcher()
 	
+	# create tv database object
 	tdb = _tv_database()
 	
+	# pass tdb to each controller
 	showController = ShowController(tdb)
 	userController = UserController(tdb)
 	voteController = VoteController(tdb)
@@ -50,8 +53,10 @@ def start_service():
 	dispatcher.connect('reset_index', '/reset/', controller=resetController,              action='PUT_INDEX', conditions=dict(method=['PUT']))
 	dispatcher.connect('reset_sid', '/reset/:sid', controller=resetController,            action='PUT_SID', conditions=dict(method=['PUT']))
 
+	# set up conf
 	conf = { 'global' : { 'server.socket_host' : 'student04.cse.nd.edu', 'server.socket_port' : 52048 }, '/' : { 'request.dispatch': dispatcher } }
 	
+	# start
 	cherrypy.config.update(conf)
 	app = cherrypy.tree.mount(None, config=conf)
 	cherrypy.quickstart(app)
