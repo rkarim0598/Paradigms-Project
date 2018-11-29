@@ -1,0 +1,33 @@
+.layout-transparent {
+    background: url('../assets/avatar.jpg') center / cover;
+    color: white;
+}
+body {
+    position: relative;
+}
+.demo-card-wide > .mdl-card__title {
+    justify-content: center;
+    text-align: center;
+    background-color: lightblue;
+    color: #ff5722;
+    height: 176px;
+}
+
+.main {
+    margin: auto;
+    height: 100%;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    /* width: 30em;
+    height: 18em; */
+    /* margin-top: -9em; */
+    /* margin-left: -15em; */
+    /* transform: translate(-50%, -50%); */
+    /* justify-content: top; */
+    /* text-align: center; */
+    /* padding: 0 50% 0; */
+    /* background-color: white; */
+    /* color: blue; */
+    /* opacity: 0.5; */
+}
