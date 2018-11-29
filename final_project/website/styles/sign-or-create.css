@@ -2,3 +2,20 @@
     justify-content: center;
     text-align:center;
 }
+
+.color {
+    background-color: #FF6E40;
+}
+
+.mdl-tabs {
+    background-color: black;
+}
+
+
+input, label {
+    color: #03A9F4 !important;
+}
+
+body {
+    background-color: black;
+}

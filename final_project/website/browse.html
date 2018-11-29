@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-deep_orange.min.css" />
+    <link rel="stylesheet" href="styles/browse.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div id="container" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <main class="mdl-layout__content">
+            <div class="grid-container">
+                <div class="shows">
+                    <h5 class="grid-label">Suggestions</h5>
+                    <ul id="show-list" class="chunk mdl-list">
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid1-name">Avatar: The Last Airbender</span>
+                                <span id="sid1-desc" class="mdl-list__item-text-body">
+                                    Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                                    for playing Hal in Malcom in the Middle.
+                                </span>
+                            </span>
+                            <span id="sid1-rating" class="mdl-list__item-secondary-content">
+                                10.0
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid2-name">Sherlock</span>
+                                <span id="sid2-desc" class="mdl-list__item-text-body">
+                                    Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+                                    the "Need For Speed" Movie.
+                                </span>
+                            </span>
+                            <span id="sid2-rating" class="mdl-list__item-secondary-content">
+                                9.5
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid3-name">Twin Peaks</span>
+                                <span id="sid3-desc" class="mdl-list__item-text-body">
+                                    Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness
+                                    for the
+                                    character, Bob stars in his own show now, called "Better Call Saul".
+                                </span>
+                            </span>
+                            <span id="sid3-rating" class="mdl-list__item-secondary-content">
+                                9.49
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rated">
+                    <h5 class="grid-label">Previously Rated</h5>
+                    <ul id="show-list" class="chunk mdl-list">
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid1-name">Avatar: The Last Airbender</span>
+                                <span id="sid1-desc" class="mdl-list__item-text-body">
+                                    Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                                    for playing Hal in Malcom in the Middle.
+                                </span>
+                            </span>
+                            <span id="sid1-rating" class="mdl-list__item-secondary-content">
+                                10.0
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid2-name">Sherlock</span>
+                                <span id="sid2-desc" class="mdl-list__item-text-body">
+                                    Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+                                    the "Need For Speed" Movie.
+                                </span>
+                            </span>
+                            <span id="sid2-rating" class="mdl-list__item-secondary-content">
+                                9.5
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                                <span id="sid3-name">Twin Peaks</span>
+                                <span id="sid3-desc" class="mdl-list__item-text-body">
+                                    Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness
+                                    for the
+                                    character, Bob stars in his own show now, called "Better Call Saul".
+                                </span>
+                            </span>
+                            <span id="sid3-rating" class="mdl-list__item-secondary-content">
+                                9.49
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rec">
+                    <h5 class="grid-label">Recommended</h5>
+                    <!-- recommendation will go here along with stars underneath for rating -->
+                    <div class="recs">
+                        <img src="assets/avatar.jpg" alt="show logo" height="60%" width="50%"><br>
+                        <form>
+                            <span id="1" class="fa fa-star" onclick="rank(1)"></span>
+                            <span id="2" class="fa fa-star" onclick="rank(2)"></span>
+                            <span id="3" class="fa fa-star" onclick="rank(3)"></span>
+                            <span id="4" class="fa fa-star" onclick="rank(4)"></span>
+                            <span id="5" class="fa fa-star" onclick="rank(5)"></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/browse.js"></script>
+
+</body>
+
+</html>
