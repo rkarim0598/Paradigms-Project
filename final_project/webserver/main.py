@@ -85,7 +85,7 @@ def start_service():
 			'server.socket_port' : 52048 }, 
 		'/' : { 
 			'request.dispatch': dispatcher,
-			'tools.CORS.on': True 
+			'tools.CORS.on': True, 
 		} 
 	}
 	

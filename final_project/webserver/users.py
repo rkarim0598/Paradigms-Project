@@ -50,7 +50,12 @@ class UserController(object):
 		data = json.loads(cherrypy.request.body.read())
 		
 		try:
-			self.td.set_user(data['uname'],data['pname'],data['password'],'../fetch_data/users.txt')
+			r = self.td.get_user(data['pname'])
+			if r['result'] == 'error':
+				self.td.set_user(data['uname'],data['pname'],data['password'],'../fetch_data/users.txt')
+			else:
+				r['result'] = 'error'
+				r['message'] = 'user already exists'
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)
