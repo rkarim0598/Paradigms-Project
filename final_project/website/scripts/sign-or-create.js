@@ -1,6 +1,13 @@
 initHeader()
 updateUser()
 
+process = (result) => {
+    if (result == 'success') {
+        window.location.href = '../website/browse-alt.html'
+    } else {
+        alert('Invalid user name or password!')
+    }
+}
 verify = (uid, password) => {
     var xhr = new XMLHttpRequest()
     xhr.open('GET', 'http://student04.cse.nd.edu:52048/users/' + uid, true)
@@ -9,7 +16,10 @@ verify = (uid, password) => {
         console.log(response)
         if (response['result'] == 'success') {
             localStorage.setItem('uid', uid)
-            window.location.href = '../website/browse-alt.html'
+            process('success')
+        }
+        else {
+            process('failure')
         }
     }
 
@@ -26,8 +36,4 @@ sign = () => {
     }
 
     verify(uid, password)
-
 }
-
-var signIn = document.getElementById('sign-button')
-signIn.addEventListener("click", sign)
