@@ -59,11 +59,11 @@ createUser = (uid, password) => {
         if (response['result'] != 'success') {
             alert('Error occured, please try again')
         } else {
-            window.href.location = '../website/sign-or-create.html#sign-in'
+            window.location.href = '../website/sign-or-create.html#sign-in'
         }
     }
 
-    xhr.send()
+    xhr.send(json)
 }
 
 create = () => {
