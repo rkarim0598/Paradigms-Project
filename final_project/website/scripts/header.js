@@ -5,7 +5,11 @@ initHeader = () => {
     var div = document.createElement('div')
     div.setAttribute('class', 'mdl-layout__header-row')
 
-    
+    var img = document.createElement('img')
+    img.setAttribute('class', 'mdl-layout-icon')
+    img.src = './assets/logo.png'
+    img.setAttribute('width', '10%')
+
     var h1 = document.createElement('h1')
     h1.setAttribute('class', 'mdl-layout-title')
     h1.innerHTML = 'Show Wiz'
@@ -32,10 +36,10 @@ initHeader = () => {
 
     nav.appendChild(signIn)
     // nav.append(browse)
-
     div.appendChild(h1)
     div.appendChild(spacer)
     div.appendChild(nav)
+    header.appendChild(img)
     header.appendChild(div)
     document.getElementById('container').prepend(header)
 }

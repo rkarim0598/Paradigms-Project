@@ -1,16 +1,16 @@
 .layout-transparent {
-    background: url('../assets/avatar.jpg') center / cover;
+    background: url('../assets/ShowWiz.png') center / cover;
     color: #ff5722;
     align-items: center;
     /* background-color: purple; */
 }
 
 .jumbotron {
-    margin-top: 20%;
+    margin-top: 15%;
     /* margin-bottom: 10%; */
     margin-left: 10%;
     margin-right: 10%;
-    opacity: 0.9;
+    opacity: 0.5;
     /* height: 100%; */
 }
 body {
