@@ -56,10 +56,12 @@ createUser = (uid, password) => {
 
     xhr.onload = () => {
         var response = JSON.parse(xhr.responseText)
+        console.log(response)
         if (response['result'] != 'success') {
             alert('Error occured, please try again')
         } else {
-            window.location.href = '../website/sign-or-create.html#sign-in'
+            localStorage.setItem('uid', uid)
+            window.location.href = '../website/browse-alt.html'
         }
     }
 

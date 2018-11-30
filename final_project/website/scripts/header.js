@@ -21,13 +21,13 @@ initHeader = () => {
     signIn.setAttribute('class', 'mdl-navigation__link mdl-layout-spacer')
     signIn.innerHTML = 'Sign In/Create Account'
 
-    var browse = document.createElement('a')
-    browse.href = 'browse.html'
-    browse.setAttribute('class', 'mdl-navigation__link mdl-layout-spacer')
-    browse.innerHTML = 'Browse'
+    // var browse = document.createElement('a')
+    // browse.href = 'browse.html'
+    // browse.setAttribute('class', 'mdl-navigation__link mdl-layout-spacer')
+    // browse.innerHTML = 'Browse'
 
     nav.appendChild(signIn)
-    nav.append(browse)
+    // nav.append(browse)
 
     div.appendChild(h1)
     div.appendChild(spacer)
