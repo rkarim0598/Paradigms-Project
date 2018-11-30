@@ -5,6 +5,10 @@
 body {
     position: relative;
 }
+
+.mdl-layout-title {
+    cursor: pointer;
+}
 .demo-card-wide > .mdl-card__title {
     justify-content: center;
     text-align: center;

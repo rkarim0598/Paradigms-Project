@@ -17,7 +17,7 @@ verify = (uid, password) => {
     xhr.open('GET', 'http://student04.cse.nd.edu:52048/users/' + uid, true)
     xhr.onload = () => {
         var response = JSON.parse(xhr.responseText)
-        if (response['result'] == 'success') {
+        if (response['result'] == 'success' && response['password'] == password) {
             localStorage.setItem('uid', uid)
             process('success')
         }

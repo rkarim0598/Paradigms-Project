@@ -5,9 +5,13 @@ initHeader = () => {
     var div = document.createElement('div')
     div.setAttribute('class', 'mdl-layout__header-row')
 
+    
     var h1 = document.createElement('h1')
     h1.setAttribute('class', 'mdl-layout-title')
     h1.innerHTML = 'Show Wiz'
+    h1.onclick = () => {
+        window.location.href = '../website/index.html'
+    }
 
     var spacer = document.createElement('div')
     spacer.setAttribute('class', 'mdl-layout-spacer')

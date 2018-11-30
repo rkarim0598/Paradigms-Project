@@ -3,6 +3,10 @@
     text-align:center;
 }
 
+.mdl-layout-title {
+    cursor: pointer;
+}
+
 .color {
     background-color: #FF6E40;
 }

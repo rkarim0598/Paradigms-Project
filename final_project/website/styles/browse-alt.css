@@ -40,6 +40,10 @@
     grid-row-end: 2;
 }
 
+.mdl-layout-title {
+    cursor: pointer;
+}
+
 .show-img {
     grid-column-start: 2;
     grid-column-end: 3;
