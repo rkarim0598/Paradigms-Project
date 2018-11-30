@@ -67,3 +67,7 @@ img {
 .checked {
     color: orange;
 }
+
+.color {
+    background-color: #FF6E40;
+}
