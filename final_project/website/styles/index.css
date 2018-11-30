@@ -1,6 +1,13 @@
 .layout-transparent {
     background: url('../assets/avatar.jpg') center / cover;
-    color: white;
+    color: #ff5722;
+    align-items: center;
+    /* background-color: purple; */
+}
+
+.jumbotron {
+    opacity: 0.8;
+
 }
 body {
     position: relative;
@@ -9,12 +16,22 @@ body {
 .mdl-layout-title {
     cursor: pointer;
 }
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+    /* padding-top: 50%; */
+}
+
 .demo-card-wide > .mdl-card__title {
     justify-content: center;
     text-align: center;
     background-color: lightblue;
     color: #ff5722;
     height: 176px;
+}
+
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
 }
 
 .main {
