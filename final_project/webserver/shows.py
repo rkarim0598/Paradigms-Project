@@ -73,6 +73,7 @@ class ShowController(object):
 				sid = int(sid)
 				show = self.tdb.get_show(sid)
 				if show['result'] is not 'failure':
+					sdict['sid'] = sid
 					sdict['name'] = show['name']
 					sdict['genres'] = show['genres']
 					sdict['site'] = show['site']
