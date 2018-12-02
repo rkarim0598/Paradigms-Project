@@ -23,6 +23,7 @@ class UserController(object):
 			value = self.get_value(key)
 			if value is not None:
 				output['pname'] = value
+				output['password'] = self.td.get_password(key)
 			else:
 				output['result'] = 'error'
 				output['message'] = 'not a valid uid'
@@ -51,7 +52,7 @@ class UserController(object):
 		
 		try:
 			r = self.td.get_user(data['pname'])
-			if r['result'] == 'error':
+			if r is None:
 				self.td.set_user(data['uname'],data['pname'],data['password'],'../fetch_data/users.txt')
 			else:
 				r['result'] = 'error'

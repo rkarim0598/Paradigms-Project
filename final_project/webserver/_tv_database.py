@@ -18,7 +18,8 @@ class _tv_database:
 		self.users	 = {}
 		self.ratings = {}
 		self.userRatings = {}
-	
+		self.passwords = {}
+
 	# Loads all the tv shows from file, returns dict of tv shows
 	def load_tvshows(self, tvshows_file):
 		f = open(tvshows_file)
@@ -85,6 +86,7 @@ class _tv_database:
 			components = line.split(",")
 			pname = components[0]
 			uname = components[1]
+			self.passwords[uname] = components[2]
 			self.users[uname] = pname
 
 		return self.users
@@ -100,6 +102,13 @@ class _tv_database:
 		else:
 			return None
 	
+	# get password of uid
+	def get_password(self, uid):
+		if uid in self.passwords:
+			return self.passwords[uid]
+		else:
+			return None
+
 	# Create a new user with a username, name, and a password (and add to file)
 	def set_user(self, uid, pname, password, user_file):
 		self.users[uid] = pname
