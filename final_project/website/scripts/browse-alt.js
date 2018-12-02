@@ -1,7 +1,7 @@
 initHeader()
 updateUser()
 var showList
-var imageIndex
+var imageIndex = null
 var sidList
 
 getEpisodes = (sid) => {
@@ -11,14 +11,18 @@ getEpisodes = (sid) => {
     xhr.onload = () => {
         var response = JSON.parse(xhr.responseText)
         console.log(response)
+        if (imageIndex === null) {
+            imageIndex = 0
+        }
+        
         if (response['result'] == 'success') {
             var episodeLength = response.episodes.length
             console.log(episodeLength)
 
-            var genre = response.output.genres 
-            var summary = response.output.summary 
+            var genre = response.output.genres
+            var summary = response.output.summary
             var seasons = response.episodes[episodeLength - 1].season
-            
+
             var div = document.getElementById('episodes')
             while (div.firstChild) {
                 div.removeChild(div.firstChild)
@@ -26,10 +30,10 @@ getEpisodes = (sid) => {
 
             var label = document.getElementById('infoLabel')
             label.innerHTML = showList[imageIndex].name
-            
+
             var epiData = document.createElement('p')
             epiData.innerHTML = 'Seasons: ' + seasons + '<br>' +
-                                'Episodes: ' + episodeLength
+                'Episodes: ' + episodeLength
 
             var genreText = document.createElement('p')
             genreText.innerHTML = 'Genres: ' + genre
@@ -47,16 +51,16 @@ getEpisodes = (sid) => {
             while (div.firstChild) {
                 div.removeChild(div.firstChild)
             }
-            var genre = response.output.genres 
-            var summary = response.output.summary 
+            var genre = response.output.genres
+            var summary = response.output.summary
             var para = document.createElement('p')
             para.innerHTML = 'No episode data for ' + response.output.name
             var genreText = document.createElement('p')
             genreText.innerHTML = 'Genres: ' + genre
             var sum = document.createElement('p')
             sum.innerHTML = summary
-            div.appendChild(para)  
-            div.appendChild(genreText)  
+            div.appendChild(para)
+            div.appendChild(genreText)
             div.appendChild(sum)
 
         }
@@ -83,13 +87,13 @@ setImage = () => {
 
 generateSuggestions = (shows) => {
     showList = shows
+    document.getElementById('image').src = shows[0].image
+    getEpisodes(shows[0].sid)
     for (var i = 0; i < shows.length; i++) {
         var y = i + 1
 
         var listContainer = document.getElementById('sid' + y)
-        // listContainer.onclick = () => {
-        //     setImage()
-        // }
+
 
         var title = document.getElementById('sid' + y + '-name')
         var desc = document.getElementById('sid' + y + '-desc')
