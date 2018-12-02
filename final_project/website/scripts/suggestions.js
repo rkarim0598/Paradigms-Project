@@ -87,7 +87,7 @@ setImage = () => {
             image.src = showList[imageIndex].image
 
             getEpisodes(showList[imageIndex].sid)
-            location.hash = 'info'
+            location.hash = 'tabs'
             resetColors()
             event.currentTarget.style = 'background-color: #40C4'
         }

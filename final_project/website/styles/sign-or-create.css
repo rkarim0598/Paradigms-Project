@@ -23,3 +23,8 @@ input, label {
 body {
     background-color: black;
 }
+
+.background {
+    background: url('../assets/ShowWiz.png') center / cover;
+    height: 100%;
+}
