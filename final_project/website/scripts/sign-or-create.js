@@ -22,6 +22,7 @@ verify = (uid, password) => {
             process('success')
         }
         else {
+            console.log(response)
             process('failure')
         }
     }
@@ -58,7 +59,7 @@ createUser = (uid, password) => {
         var response = JSON.parse(xhr.responseText)
         console.log(response)
         if (response['result'] != 'success') {
-            alert('Error occured, please try again')
+            alert('User already exists')
         } else {
             localStorage.setItem('uid', uid)
             window.location.href = '../website/browse-alt.html'
@@ -75,7 +76,11 @@ create = () => {
 
     // don't execute if no uid, password, or check entered
     // or if password and check don't equal
-    if (uid == "" || password == "" || check == "" || password != check) {
+    if (uid == "" || password == "" || check == "") {
+        alert('Please complete all fields')
+        return;
+    } else if (password != check) {
+        alert('Passwords don\'t match')
         return;
     }
 
