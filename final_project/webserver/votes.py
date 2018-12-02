@@ -31,7 +31,8 @@ class VoteController(object):
 		data = json.loads(cherrypy.request.body.read())
 
 		try:
-			self.tdb.set_user_rating(uid, str(data['sid']), int(data['rating']))
+			sid = self.tdb.set_user_rating(uid, str(data['sid']), int(data['rating']))
+			output['sid'] = sid
 		except Exception as ex:
 			output['result'] = 'failure'
 			output['message'] = str(ex)

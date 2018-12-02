@@ -127,6 +127,8 @@ class _tv_database:
 		else:
 			self.userRatings[uid] = dict()
 			self.userRatings[uid][sid] = rating
+		rsid = self.get_recommendation(uid)
+		return rsid
 
 	# Get what the user rated a specific show
 	def get_user_rating(self, uid, sid):
