@@ -112,6 +112,7 @@ class _tv_database:
 	# Create a new user with a username, name, and a password (and add to file)
 	def set_user(self, uid, pname, password, user_file):
 		self.users[uid] = pname
+		self.passwords[uid] = password
 		f = open(user_file, 'a')
 		f.write(pname + ',' + uid + ',' + password + '\n')
 		f.close()

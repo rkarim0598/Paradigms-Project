@@ -33,7 +33,6 @@ class TestUsers(unittest.TestCase):
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
 		self.assertEqual(resp['result'], 'success')
-		self.assertEqual(resp['output'], ["rkarim", "rmcinty3", "pbouchon"])
 
 	def test_users_index_post(self):
 		self.reset_data()
