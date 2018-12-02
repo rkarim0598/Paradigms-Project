@@ -15,7 +15,7 @@
 </head>
 </body>
 <div id="container" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect center">
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
         <div class="color mdl-tabs__tab-bar">
             <a href="#browse" class="color mdl-tabs__tab is-active">Browse</a>
             <a href="#rated" class="color mdl-tabs__tab">Previously Rated</a>
@@ -83,14 +83,16 @@
                         </li>
                     </ul>
                 </div>
-                <div class="show-img">
+                <div class="show-img center">
                     <!-- <h5 class="grid-label">Image</h5> -->
                     <div class="current-image">
                         <img id="image" class="holder" src="" alt="show logo">
                     </div>
                 </div>
-                <div class="episodes">
-                    <h5 class="grid-label">Episodes</h5>
+                <div id="info" class="episodes">
+                    <h5 id="infoLabel" class="grid-label"></h5>
+                    <div id="episodes">
+                    </div>
                 </div>
 
             </div>
