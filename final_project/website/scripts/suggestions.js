@@ -40,6 +40,7 @@ getEpisodes = (sid) => {
 
             var sum = document.createElement('p')
             sum.innerHTML = summary
+            sum.style = 'color: white'
 
             div.appendChild(epiData)
             div.append(genreText)
