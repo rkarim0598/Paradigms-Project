@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-deep_orange.min.css" />
@@ -102,6 +103,7 @@
             <div class="flex-container">
                 <div class="rec-image-info">
                     <h1 id="rec-title"></h1>
+                    <h4 id="rec-genre"></h4>
                     <div class="rec-image">
                         <img id="rec-image" src="">
                     </div><br>
@@ -110,11 +112,11 @@
                     </div>
                 </div><br>
                 <div class="stars">
-                    <span id="1" class="fa fa-star" onmouseover="highlight(1)" onclick="rank(1)"></span>
-                    <span id="2" class="fa fa-star" onmouseover="highlight(2)" onclick="rank(2)"></span>
-                    <span id="3" class="fa fa-star" onmouseover="highlight(3)" onclick="rank(3)"></span>
-                    <span id="4" class="fa fa-star" onmouseover="highlight(4)" onclick="rank(4)"></span>
-                    <span id="5" class="fa fa-star" onmouseover="highlight(5)" onclick="rank(5)"></span>
+                    <span id="1" class="fa fa-star checked" onmouseover="rank(1)" onclick="rank(1)"></span>
+                    <span id="2" class="fa fa-star" onmouseover="rank(2)" onclick="rank(2)"></span>
+                    <span id="3" class="fa fa-star" onmouseover="rank(3)" onclick="rank(3)"></span>
+                    <span id="4" class="fa fa-star" onmouseover="rank(4)" onclick="rank(4)"></span>
+                    <span id="5" class="fa fa-star" onmouseover="rank(5)" onclick="rank(5)"></span>
                 </div><br>
                 <div class="rec-button">
                     <button id="submit-vote" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -123,10 +125,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
-        <div class="mdl-snackbar__text"></div>
-        <button class="mdl-snackbar__action" type="button"></button>
     </div>
 </div>
 <script src="scripts/header.js"></script>

@@ -14,7 +14,7 @@ getEpisodes = (sid) => {
         if (imageIndex === null) {
             imageIndex = 0
         }
-        
+
         if (response['result'] == 'success') {
             var episodeLength = response.episodes.length
             console.log(episodeLength)
@@ -32,8 +32,8 @@ getEpisodes = (sid) => {
             label.innerHTML = showList[imageIndex].name
 
             var epiData = document.createElement('p')
-            epiData.innerHTML = 'Seasons: ' + seasons + '<br>' +
-                'Episodes: ' + episodeLength
+            epiData.innerHTML = 'Seasons: ' + seasons + '&emsp;' +
+                'Episodes: ' + episodeLength + '&emsp;' + genre
 
             var genreText = document.createElement('p')
             genreText.innerHTML = 'Genres: ' + genre
@@ -43,7 +43,7 @@ getEpisodes = (sid) => {
             sum.style = 'color: white'
 
             div.appendChild(epiData)
-            div.append(genreText)
+            // div.append(genreText)
             div.appendChild(sum)
         } else {
             var div = document.getElementById('episodes')
@@ -60,7 +60,9 @@ getEpisodes = (sid) => {
             genreText.innerHTML = 'Genres: ' + genre
             var sum = document.createElement('p')
             sum.innerHTML = summary
-            div.appendChild(para)
+            sum.style = 'color: white'
+
+            // div.appendChild(para)
             div.appendChild(genreText)
             div.appendChild(sum)
 
@@ -69,6 +71,12 @@ getEpisodes = (sid) => {
     xhr.send()
 }
 
+resetColors = () => {
+    var itemList = document.getElementById('show-list').getElementsByClassName('mdl-list__item')
+    for (var i = 0; i < itemList.length; i++) {
+        itemList[i].style = 'background-color: black'
+    }
+}
 setImage = () => {
     var itemList = document.getElementById('show-list').getElementsByClassName('mdl-list__item')
 
@@ -80,6 +88,8 @@ setImage = () => {
 
             getEpisodes(showList[imageIndex].sid)
             location.hash = 'info'
+            resetColors()
+            event.currentTarget.style = 'background-color: #40C4'
         }
     }
 

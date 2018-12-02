@@ -3,6 +3,8 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
+    /* background: url('../assets/ShowWiz.png') center / cover; */
+
     /* background-color: red; */
 }
 
@@ -22,7 +24,10 @@
     text-align:center;
 }
 
-
+.rec-genre {
+    margin-top: 0px;
+    color: #FF6E40;
+}
 
 .color {
     background-color: #FF6E40;
@@ -35,7 +40,9 @@
 .mdl-list__item-secondary-content,
 .show-title {
     background-color: black;
-    color: #40C4FF;
+    background: transparent;
+    /* color: #40C4FF; */
+    color: #FF6E40;
 }
 
 /* .mdl-list__item-secondary-content {
@@ -101,16 +108,19 @@
 
 body {
     background-color: black;
-    color: #40C4FF;
+    color: #FF6E40;
 }
 
 .chunk {
     margin-top: 0px;
 }
+
+#rec-title,
 .grid-label {
     margin-bottom: 0px;
     text-align: center;
-    color: #FF6E40;
+    /* color: #FF6E40; */
+    color: #40C4FF;
 }
 
 .fa-star {
@@ -124,7 +134,12 @@ body {
 
 #submit-vote {
     background-color: #40C4FF;
-    color: white;
+    color: black;
+    transition: 0.8s;
+}
+
+#submit-vote:hover {
+    background-color: #FF6E40;
 }
 
 #rec-summary {

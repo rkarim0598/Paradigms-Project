@@ -1,16 +1,25 @@
 .layout-transparent {
-    background: url('../assets/ShowWiz.png') center / cover;
-    color: #ff5722;
+    height: 100%;
+    width: 100%;
+    color: #FF6E40;
     align-items: center;
+    background: black;
     /* background-color: purple; */
 }
 
+.topper {
+    height: 30%; /* added */
+    background: url('../assets/ShowWiz.png') center / cover;
+}
+
 .jumbotron {
-    margin-top: 15%;
+    /* margin-top: 15%;  if you get rid of topper uncomment this*/ 
     /* margin-bottom: 10%; */
     margin-left: 10%;
     margin-right: 10%;
-    opacity: 0.5;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.2);
+
     /* height: 100%; */
 }
 body {

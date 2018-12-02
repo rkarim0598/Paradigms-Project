@@ -75,6 +75,8 @@ getShow = () => {
         image.src = response.output.image
         var title = document.getElementById('rec-title')
         title.innerHTML = response.output.name
+        var genre = document.getElementById('rec-genre')
+        genre.innerHTML = response.output.genres
         var summary = document.getElementById('rec-summary')
         summary.innerHTML = response.output.summary
     }
